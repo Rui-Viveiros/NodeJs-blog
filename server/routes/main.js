@@ -46,6 +46,8 @@ router.get('/contact', (req, res) => {
     res.render('contact');
 });
 
+router.post('/contact', (req, res) => { const { name, email, message } = req.body; console.log(name, email, message); res.send('Message received!'); });
+
 router.get('/projects', (req, res) => {
     res.render('projects');
 });
