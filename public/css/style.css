@@ -63,6 +63,10 @@ textarea {
     cursor: pointer;
 }
 
+hr {
+    border-color: var(--yellow)
+}
+
 .btn-delete{
     padding: 10px 16px;
     background-color: var(--red);
@@ -202,7 +206,7 @@ header{
 }
 
 /* Home Article List */
-.artticle__heading{
+.article__heading{
     margin-top: 4rem;
     font-weight: 400;
 }
