@@ -8,7 +8,22 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET
 
 // Check Login
+const authMiddleware = (req, res, next) => {
+    const token = req.cookies.token;
 
+    if (!token) {
+        return res.status(401).json( { message: "Unauthorized" } );
+    }
+
+    try {
+        const decoded = jwt.verify(token, jwtSecret);
+        req.userId = decoded.userId;
+        next();
+    } catch (error) {
+        console.log(error);
+        res.status(401).json( { message: "Unauthorized" } );
+    }
+}
 
 // Admin - Login Page
 router.get('/admin', async (req, res) => {
@@ -70,9 +85,54 @@ router.post('/register', async (req, res) => {
    
 })
 
-// Dashboard
-router.get('/dashboard', async (req, res) => {
-    res.render('admin/dashboard');
+// Admin Dashboard
+router.get('/dashboard', authMiddleware, async (req, res) => {
+
+    try {
+        const locals = {
+            title: "Dashboard",
+            description: "Simple blog made with NodeJs, Express and MongoDB"
+        }
+        const data = await Post.find();
+        res.render('admin/dashboard', { locals, data, layout:adminLayout });
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+// Get Admin - create new post
+router.get('/add-post', authMiddleware, async (req, res) => {
+    try {
+        const locals = {
+            title: 'Add Post',
+        }
+
+        const data = await Post.find();
+        res.render('admin/add-post', { locals, layout: adminLayout })
+    } catch (error) {
+        
+    }
+})
+
+// POST - create new post
+router.post('/add-post', authMiddleware, async (req, res) => {
+    try {
+        try {
+            const newPost = new Post({
+                title: req.body.title,
+                body: req.body.body
+            })
+            await Post.create(newPost);
+            res.redirect('/dashboard')
+        } catch (error) {
+            console.log(error);
+        }
+
+        res.redirect('/dashboard')
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 module.exports = router;
