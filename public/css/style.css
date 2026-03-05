@@ -518,5 +518,6 @@ details[open] .span:after {
 @media (min-width: 769px) {
     .hero-image {
         max-height: 528px;
+        
     }
 }
