@@ -63,6 +63,8 @@ router.get('/post/:id', async (req, res) => {
         title: data.title,
         description: "Simple blog created with Nodejs and MongoDB"
         }
+        const { marked } = await import('marked');
+        data.body = marked.parse(data.body);
         res.render('post', { 
             locals, 
             data,

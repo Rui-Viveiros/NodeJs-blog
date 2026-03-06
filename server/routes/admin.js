@@ -129,7 +129,6 @@ router.post('/add-post', authMiddleware, async (req, res) => {
         } catch (error) {
             console.log(error);
         }
-        res.redirect('/dashboard')
     } catch (error) {
         console.log(error);
     }
