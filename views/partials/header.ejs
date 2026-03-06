@@ -1,16 +1,16 @@
 <header class="header">
-    <a href="/" class="header__logo">Rui Viveiros | Posts</a>
+    <a href="/" class="header__logo">Rui Viveiros | Blog</a>
     <nav class="header__nav">
         <ul>
             <li> 
-                <a href="/about">About</a>
+                <a href="/about" class="<%= isActiveRoute('/about', currentRoute) %>">About</a>
                                 
             </li>
              <li>
-                <a href="/contact">Contact</a>
+                <a href="/contact" class="<%= isActiveRoute('/contact', currentRoute) %>">Contact</a>
             </li>
             <li>
-                <a href="/projects">Projects</a>
+                <a href="/projects" class="<%= isActiveRoute('/projects', currentRoute) %>">Projects</a>
             </li>
             <!-- <li>
                 <a href="/resumee">Resumee</a>

@@ -27,7 +27,8 @@ router.get('', async (req, res) => {
         locals, 
         data,
         current: page,
-        nextPage: hasNextPage ? nextPage : null
+        nextPage: hasNextPage ? nextPage : null,
+        currentRoute: '/'
     });
 
     } catch (error) {
@@ -39,21 +40,17 @@ router.get('', async (req, res) => {
 
 
 router.get('/about', (req, res) => {
-    res.render('about');
+    res.render('about', { currentRoute: '/about' });
 });
 
 router.get('/contact', (req, res) => {
-    res.render('contact');
+    res.render('contact', { currentRoute: '/contact'});
 });
 
 router.post('/contact', (req, res) => { const { name, email, message } = req.body; console.log(name, email, message); res.send('Message received!'); });
 
 router.get('/projects', (req, res) => {
-    res.render('projects');
-});
-
-router.get('/resumee', (req, res) => {
-    res.sendFile(process.cwd() + '/public/files/cv-rui-viveiros.pdf');
+    res.render('projects', { currentRoute: '/projects' });
 });
 
 // GET 
@@ -66,7 +63,11 @@ router.get('/post/:id', async (req, res) => {
         title: data.title,
         description: "Simple blog created with Nodejs and MongoDB"
         }
-        res.render('post', { locals, data });
+        res.render('post', { 
+            locals, 
+            data,
+            currentRoute: `/post/${slug}` 
+        });
     } catch (error) {
         console.log(error);
     }
@@ -89,7 +90,8 @@ router.post('/search', async (req, res) => {
         });
         res.render("search", {
             data,
-            locals
+            locals,
+            currentRoute: '/search'
         });
     } catch (error) {
         console.log(error);

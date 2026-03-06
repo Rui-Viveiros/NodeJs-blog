@@ -6,7 +6,7 @@
     --olive-gray: #49483E; /* Selection */
     --white: #F8F8F2; /* Foreground Text */
     --comment: #75715E; /* Comment */
-    --cyan: #66D9EF; /* */
+    --cyan: #66d8eff3; /* */
     --green: #A6E22E; /* */
     --orange: #FD971F; /* */
     --pink: #F92672; /* */
@@ -95,6 +95,8 @@ img {
     filter: drop-shadow(0px 44px 34px rgba(0,0,0,0.25));
     overflow: hidden;
     border-radius: var(--border-radius);
+     display: block;
+    margin: 0 auto;
 }
 
 .developer-portrait{
@@ -135,11 +137,19 @@ header{
 
 .header__logo:hover{
     text-decoration: underline;
-    text-decoration-color: var(--pink);
+    text-decoration-color: var(--orange);
 }
 
 .header__logo:active{
-    color: var(--green);
+    color: var(--orange);
+}
+
+/* active route class added by isActiveRoute helper */
+.header__nav ul a.active {
+    color: var(--orange);
+    /* additional emphasis if desired */
+    text-decoration: underline;
+    text-decoration-color: var(--orange);
 }
 
 .header__nav{
@@ -165,11 +175,11 @@ header{
     border: 2px solid transparent;
     font-size: var(--font-size-base);
     font-weight: 600;
-    color: var(--orange);
+    color: var(--olive-gray);
 
 }
 .header__button button:hover{
-    border: 2px solid var(--pink);
+    border: 2px solid var(--orange);
 }
 
 /* Header Navigation */
@@ -189,12 +199,12 @@ header{
 .header__nav ul a:hover{
     padding: 10px;
     text-decoration: underline;
-    text-decoration-color: var(--pink);
+    text-decoration-color: var(--orange);
     text-decoration-thickness: 2px;
 }
 
 .header__nav ul a:active{
-    color: var(--green);
+    color: var(--orange);
 }
 
 /* Author Homepage */
